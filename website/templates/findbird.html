@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{%block title %} Findbird {% endblock %}
+{% block content%}
+<h1 class = "text-center">Bird Detection</h1>
+<form class = "p-3 text-center" action="/findbird", method="post" enctype="multipart/form-data">
+    <input class="form-control" type="file" name="imagefile">
+    <input class = "btn btn-primary mt-3" type="submit" value="Predict Image">
+</form>
+<br>
+{% if image_loc %}
+<center><img class="border border-success" src="static/storage/{{image_loc}}" alt="" height="50%" width="50%"> <center>
+{%endif%}
+{%if prediction%}
+<h5 class="text-center">Prediction: {{prediction}}</h5>
+{%endif%}
+{% endblock %}

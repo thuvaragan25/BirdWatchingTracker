@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{%block title %}Home{% endblock %}
+{% block content %}
+<h1 align ="center">Birds Found</h1>
+<ul class="list-group list-group-flush" id ="birds">
+    {% for bird in user.birds %}
+    <li class="list-group-item">
+        {{bird.data}}
+        <button type="button" class="close" onClick="deleteBird({{ bird.id }})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+
+<form method = "POST">
+    <input name="bird" id = "bird" class="form-control">
+    <br/>
+    <div align = "center">
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+</form>
+{% endblock %}
