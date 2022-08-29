@@ -6,3 +6,15 @@ function deleteBird(birdId){
         window.location.href="/";
     });
 }
+
+function addBird(birdName) {
+    fetch('/add-bird', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({birdName: birdName}),
+    });
+}
+
+function infoBird(birdName) {
+    window.location.href = "/" + birdName;
+}

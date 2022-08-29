@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {%block title %} Findbird {% endblock %}
+{% block navblock %}
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item navbar-text pr-3">Hello, {{firstName}}</li>
+</ul>
+{% endblock %}
 {% block content%}
 <h1 class = "text-center">Bird Detection</h1>
 <form class = "p-3 text-center" action="/findbird", method="post" enctype="multipart/form-data">
@@ -7,10 +12,23 @@
     <input class = "btn btn-primary mt-3" type="submit" value="Predict Image">
 </form>
 <br>
+<div class="input-group">
+    <form method="post" action="/search-bird" style="display: flex; width: 100%;">
+        <input name="search" class="form-control border-end-0 border rounded-pill"type="text" placeholder="Search For A Bird" id="example-search-input">
+        <span class="input-group-append">
+            <button type="submit" class="btn btn-outline-primary border rounded-pill ms-n3 btn-hover" type="button">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </form>
+</div>
+<br>
 {% if image_loc %}
-<center><img class="border border-success" src="static/storage/{{image_loc}}" alt="" height="50%" width="50%"> <center>
+<center><img class="border border-success" src="static/storage/{{image_loc}}" alt="" height="40%" width="40%"> <center>
 {%endif%}
 {%if prediction%}
 <h5 class="text-center">Prediction: {{prediction}}</h5>
+<button type="button" onclick="addBird('{{ prediction }}')">Add Bird</button>
+<button type="button" onclick="infoBird('{{ prediction }}')">Find More Information About The Bird</button>
 {%endif%}
 {% endblock %}
